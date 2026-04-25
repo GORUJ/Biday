@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ✨</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:'Playfair Display',serif;
+  color:white;
+  overflow-x:hidden;
+}
+
+/* VIDEO */
+video{
+  position:fixed;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-1;
+  filter:brightness(0.6);
+}
+
+/* SECTION */
+.section{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:40px;
+}
+
+.section.left{justify-content:flex-start;}
+.section.right{justify-content:flex-end;}
+
+/* GLASS */
+.glass{
+  backdrop-filter:blur(15px);
+  background:rgba(255,255,255,0.08);
+  padding:25px;
+  border-radius:20px;
+  width:90%;
+  max-width:500px;
+  text-align:center;
+  box-shadow:0 8px 30px rgba(0,0,0,0.4);
+}
+
+/* TEXT */
+h1{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(2rem,6vw,3.5rem);
+  text-shadow:0 0 10px gold;
+}
+
+p{
+  font-size:clamp(1rem,3.5vw,1.3rem);
+  margin-top:10px;
+}
+
+/* BUTTON */
+button{
+  margin-top:20px;
+  padding:10px 20px;
+  border:none;
+  border-radius:25px;
+  background:linear-gradient(45deg,gold,orange);
+  cursor:pointer;
+}
+
+/* STICKER */
+.sticker{
+  position:fixed;
+  bottom:15px;
+  left:50%;
+  transform:translateX(-50%);
+  width:100px;
+}
+
+/* SPARKLES */
+.sparkle{
+  position:absolute;
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:radial-gradient(circle, white, gold, transparent);
+  box-shadow:0 0 8px gold;
+  animation:sparkleRise linear forwards;
+}
+
+@keyframes sparkleRise{
+  from{
+    transform:translateY(100vh) scale(0.5);
+    opacity:0;
+  }
+  20%{opacity:1;}
+  to{
+    transform:translateY(-10vh) scale(1.2);
+    opacity:0;
+  }
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .section{
+    justify-content:center !important;
+    padding:20px;
+  }
+
+  .sticker{
+    width:70px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- VIDEO -->
+<video autoplay muted loop playsinline>
+  <source src="C:\Users\aayus\Downloads\video.mp4" type="video/mp4">
+</video>
+
+<!-- MUSIC -->
+<audio id="music" src="C:\Users\aayus\Downloads\music.mp3"></audio>
+
+<!-- STICKER -->
+<img src="C:\Users\aayus\Downloads\Sticker-Photoroom.png" class="sticker">
+
+<!-- INTRO -->
+<section class="section left">
+  <div class="glass">
+    <h1>Hey ❤️</h1>
+    <p>Just… give me a moment ✨
+or scroll down slowly </p>
+    <button onclick="start()">Click for Magic</button>
+  </div>
+</section>
+
+<!-- NAME -->
+<section class="section right">
+  <div class="glass">
+    <h1 id="name"></h1>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section left">
+  <div class="glass">
+    <h1>Something about you ✨</h1>
+    <p>You have a calm energy…</p>
+    <p>the kind that makes everything feel lighter.</p>
+  </div>
+</section>
+
+<!-- QUALITY -->
+<section class="section right">
+  <div class="glass">
+    <h1>What makes you different 🌙</h1>
+    <p>You don’t try too hard…</p>
+    <p>and that’s what makes you real.</p>
+  </div>
+</section>
+
+<!-- DETAILS -->
+<section class="section left">
+  <div class="glass">
+    <h1>Little things ✨</h1>
+    <p>The way you smile… feels genuine.</p>
+    <p>You make normal days feel a bit lighter.</p>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="section right">
+  <div class="glass">
+    <h1>Happy Birthday 💖</h1>
+    <p>I didn’t want to just say it…</p>
+    <p>I wanted you to feel it.</p>
+  </div>
+</section>
+
+<!-- THANK YOU -->
+<section class="section left">
+  <div class="glass">
+    <h1>Thank You ✨</h1>
+    <p>For being who you are…</p>
+    <p>and for making things feel a little lighter.</p>
+  </div>
+</section>
+
+<script>
+
+/* START */
+function start(){
+  document.getElementById("music").play().catch(()=>{});
+  typeName();
+}
+
+/* TYPE NAME */
+let nameValue = "Aditi"; // 🔥 Aditi
+let text = `Happy Birthday, ${nameValue} 💖`;
+let i = 0;
+
+function typeName(){
+  let el = document.getElementById("name");
+  el.innerHTML = "";
+  i = 0;
+
+  let interval = setInterval(()=>{
+    el.innerHTML += text.charAt(i);
+    i++;
+    if(i >= text.length) clearInterval(interval);
+  },80);
+}
+
+/* SPARKLES */
+setInterval(()=>{
+  for(let i=0;i<4;i++){
+    let s=document.createElement("div");
+    s.className="sparkle";
+
+    let size = Math.random()*5 + 2;
+
+    s.style.width = size+"px";
+    s.style.height = size+"px";
+
+    s.style.left = Math.random()*100+"vw";
+    s.style.animationDuration = (4 + Math.random()*3)+"s";
+
+    document.body.appendChild(s);
+
+    setTimeout(()=>s.remove(),7000);
+  }
+},600);
+
+</script>
+
+</body>
+</html>
